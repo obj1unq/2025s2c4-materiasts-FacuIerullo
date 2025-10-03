@@ -1,0 +1,31 @@
+import materias.*
+describe "test de materias" {
+    const programacion = new Carreras()
+    const medicina = new Carreras()
+
+    const elementosDeProgramacion = new Materias()
+    const objetos1 = new Materias()
+    const objetos2 = new Materias()
+    const objetos3 = new Materias()
+    const trabajoFinal = new Materias()
+    const baseDeDatos = new Materias()
+    const mate1 = new Materias()
+    const quimica = new Materias()
+    const biologia1 = new Materias()
+    const biologia2 = new Materias()
+    const anatomiaGeneral = new Materias()
+
+    const roque = new Estudiante()
+    method initialize() {
+        programacion.materias(#{objetos1, mate1, elementosDeProgramacion, objetos2, objetos3, trabajoFinal, baseDeDatos})
+        medicina.materias(#{quimica, biologia1, biologia2, anatomiaGeneral})
+        roque.carrerasCursando(#{programacion, medicina})
+    }
+  test "materia aprobada" {
+    self.initialize()
+    roque.aprobarMateria(objetos1, 7)
+
+    assert.that(roque.estaAprobada(objetos1))
+    assert.equals(11, roque.coleccionDeMateriasDeCarrerasInscripto().size())
+  }
+}
